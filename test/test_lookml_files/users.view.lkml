@@ -2,6 +2,7 @@
 # Squad/Team: Me
 # Owned by: Me
 # Created: Me
+# Purpose: Me
 ##################################################################################
 view: users {
   sql_table_name: `lookerplus.the_look.users`
