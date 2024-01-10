@@ -25,13 +25,14 @@ class FileValidator:
     def error_log(self):
         messages = []
         for er in self.errors:
-            messages.append(f":information_source: File `{er}` has no comment on top with Team/Squad, Owned by and Created")
+            messages.append(f":information_source: File `{er}` either has no header at the top or the header is in an incorrect format.")
         return '\n'.join(messages)
 
     @staticmethod
     def validate_comment_in_the_header(raw_file_lines) -> bool:
-        return len(raw_file_lines) >= 4 \
+        return len(raw_file_lines) >= 5 \
             and '###' in raw_file_lines[0] \
             and '# Squad/Team:' in raw_file_lines[1] \
             and '# Owned by:' in raw_file_lines[2] \
-            and '# Created:' in raw_file_lines[3]
+            and '# Created:' in raw_file_lines[3] \
+            and '# Purpose:' in raw_file_lines[4]
