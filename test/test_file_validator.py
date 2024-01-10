@@ -5,7 +5,7 @@ from linter.lookml_project_parser import LookMlProjectParser
 
 
 def test_file_header_validation() -> None:
-    LookMlProjectParser.root_file_path = '/test/test_lookml_files/'
+    LookMlProjectParser.root_file_path = './test/test_lookml_files/'
     parser = LookMlProjectParser()
     assert len(parser.parsed_lookml_files) == 3
 
