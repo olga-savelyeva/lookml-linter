@@ -11,9 +11,9 @@ class LabelCustomCheck(Rule):
     def run(self, lookml_object, runtime_params: Union[Any, None] = None) -> bool:
         label = lookml_object.get('label')
         if label:
-            # Check if all characters are whitespaces
+            # Check if all characters are whitespaces or newline
             if all(char.isspace() for char in label):
-                return False  # Consider it invalid if all characters are whitespaces
+                return False  # Consider it invalid if all characters are whitespaces or newline
 
             # Check if the remaining characters follow the rule
             words_in_label = label.split()
@@ -23,4 +23,4 @@ class LabelCustomCheck(Rule):
 
 
     def message(self) -> str:
-        return 'Every word in label should start with capital letter, digit, special character or whitespace'
+        return 'Every word in label should start with capital letter, digit or special character. Label can start with whitespaces.'
