@@ -13,6 +13,18 @@ def test_lookml_object_with_label() -> None:
                 'description': 'Name of User',
                 'sql': '${TABLE}.USER_NAME'
             },
+            'user_last_name': {
+                'type': 'string',
+                'label': ' Last Name', #e.g. Forcing order by adding space to label start
+                'description': 'User Last Name',
+                'sql': '${TABLE}.USER_LAST_NAME'
+            },
+            'user_id': {
+                'type': 'string',
+                'label': '   ',  # only whitespaces
+                'description': 'User ID',
+                'sql': '${TABLE}.USER_ID'
+            },
             'requester_name': {
                 'type': 'string',
                 'label': '(requester)', # not in Camel Case
@@ -29,6 +41,12 @@ def test_lookml_object_with_label() -> None:
 
     rule_result = rule.run(view['dimensions']['user_name'])
     assert rule_result == True
+
+    rule_result = rule.run(view['dimensions']['user_last_name'])
+    assert rule_result == True
+
+    rule_result = rule.run(view['dimensions']['user_id'])
+    assert rule_result == False
 
     rule_result = rule.run(view['dimensions']['requester_name'])
     assert rule_result == False
