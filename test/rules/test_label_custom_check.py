@@ -30,6 +30,11 @@ def test_lookml_object_with_label() -> None:
                 'label': '(requester)', # not in Camel Case
                 'description': 'Name of User',
                 'sql': '${TABLE}.USER_NAME'
+            },
+            'dynamic_label': {
+                'label': "{% if products_view_picker._parameter_value == 'category' %} Product Category {% elsif products_view_picker._parameter_value == 'name' %} Product Name {% endif %}",
+                'description': "Dynamic view (data granularity) | use with 'Products View Picker'",
+                'sql': '${view}'
             }
         },
         'label': 'Primary Sales Channel In 90D',
@@ -51,6 +56,8 @@ def test_lookml_object_with_label() -> None:
     rule_result = rule.run(view['dimensions']['requester_name'])
     assert rule_result == False
 
+    rule_result = rule.run(view['dimensions']['dynamic_label'])
+    assert rule_result == True
 
 def test_lookml_object_without_label() -> None:
     rule = LabelCustomCheck(Severity.ERROR.value)
