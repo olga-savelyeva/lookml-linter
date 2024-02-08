@@ -42,7 +42,7 @@ def main():
             if not files_are_valid:
                 # error_log = file_validator.error_log() + '\n' + error_log
                 error_log = combine_error_logs(file_validator.error_log(), error_log) + '\n'
-                outcome_fail = True
+                outcome_fail = True #changing severity so merging would be blocked
 
             output = error_log.replace('    ', '- ')
 
