@@ -46,7 +46,7 @@ class LookMlLinter:
         for error in self._errors:
             output += f"\n`{error['filename']}`"
             if len(error['messages']) == 0:
-                output += f'\n    No linting warnings/errors found.'
+                output += f'\n    :white_check_mark: No linting warnings/errors found.'
             for message in error['messages']:
                 output += f'\n    {message}'
             output += '\n'
