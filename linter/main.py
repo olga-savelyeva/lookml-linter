@@ -4,13 +4,14 @@ from linter.file_validator import FileValidator
 from linter.lookml_linter import LookMlLinter
 from linter.lookml_project_parser import LookMlProjectParser
 from linter.rules_engine import RulesEngine
+from linter.combine_error_logs import combine_error_logs
 
 
 def main():
     # Read in input variables
     config_file = os.environ['INPUT_CONFIGFILE']
     filepaths = os.environ['INPUT_FILEPATHS']
-    filepaths = filepaths.split(' ') if filepaths != None else None
+    filepaths = filepaths.split(' ') if filepaths is not None else None
     save_output_to_file = os.environ['INPUT_SAVEOUTPUTTOFILE']
 
     # Validate config.yaml file
@@ -21,7 +22,6 @@ def main():
     rules = RulesEngine(validator.config).rules
     lookml_parser = LookMlProjectParser(filepaths)
     parsed_lookml_files = lookml_parser.parsed_lookml_files
-
     file_validator = FileValidator(lookml_parser.raw_files)
     files_are_valid = file_validator.validate()
 
@@ -40,8 +40,9 @@ def main():
             linter.run()
             error_log = linter.get_errors()
             if not files_are_valid:
-                error_log = file_validator.error_log() + '\n' + error_log
-            print(error_log)
+                # error_log = file_validator.error_log() + '\n' + error_log
+                error_log = combine_error_logs(file_validator.error_log(), error_log) + '\n'
+                outcome_fail = True #changing severity so merging would be blocked
 
             output = error_log.replace('    ', '- ')
 
@@ -64,6 +65,7 @@ def main():
         write_output_to_gha_env(output=output, gha_env_name='error_log')
     if outcome_fail:
         raise Exception('LookML Linter detected an error')
+
 
 def write_output_to_gha_env(output: str, gha_env_name: str):
     """

@@ -1,8 +1,4 @@
-import os
-import subprocess
-
 import pytest
-
 
 
 @pytest.fixture
@@ -18,10 +14,11 @@ def set_envs_1(monkeypatch):
     monkeypatch.delenv('INPUT_SAVEOUTPUTTOFILE')
     monkeypatch.delenv('GITHUB_ENV')
 
+
 def test_main_flow_with_parsed_and_not_parsed_files(set_envs_1) -> None:
     try:
         from linter.main import main
         assert False
-    except Exception as e:
+    except Exception:
         # 1st file is ok but 2nd is not parsable, flow should throw exception
         assert True
