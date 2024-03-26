@@ -19,7 +19,7 @@ class LabelCustomCheck(Rule):
             label = re.sub(r'{%\s*([^%]*)\s*%}', '', label)
 
             # Split the remaining text into words
-            words_in_label = re.findall(r'\b(?:[^\W_]+(?:[-\'][^\W_]+)*|[-\']|(?:\d+))\b', label)
+            words_in_label = re.findall(r"(?:[^\W_]+(?:[-'][^\W_]+)*|\d+|[-'])", label)
 
             # Check the remaining words using your custom logic
             return all(starts_with_capital_or_digit_or_special_char(word) for word in words_in_label)
