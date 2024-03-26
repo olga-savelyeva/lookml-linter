@@ -15,7 +15,7 @@ def test_lookml_object_with_label() -> None:
             },
             'pp_kpis': {
                 'type': 'string',
-                'label': "CXM Print Provider's KPIs",
+                'label': "CXM Print Provider's KPIs", #check for allowing apostrophe
                 'description': 'PP KPIs',
                 'sql': '${TABLE}.pp_kpis'
             },
