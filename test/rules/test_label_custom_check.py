@@ -13,6 +13,12 @@ def test_lookml_object_with_label() -> None:
                 'description': 'Name of User',
                 'sql': '${TABLE}.USER_NAME'
             },
+            'pp_kpis': {
+                'type': 'string',
+                'label': "CXM Print Provider's KPIs", #Allowing apostrophe
+                'description': 'PP KPIs',
+                'sql': '${TABLE}.pp_kpis'
+            },
             'user_last_name': {
                 'type': 'string',
                 'label': ' Last Name', #e.g. Forcing order by adding space to label start
@@ -45,6 +51,9 @@ def test_lookml_object_with_label() -> None:
     assert rule_result == True
 
     rule_result = rule.run(view['dimensions']['user_name'])
+    assert rule_result == True
+
+    rule_result = rule.run(view['dimensions']['pp_kpis'])
     assert rule_result == True
 
     rule_result = rule.run(view['dimensions']['user_last_name'])

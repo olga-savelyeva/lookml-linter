@@ -18,8 +18,8 @@ class LabelCustomCheck(Rule):
             # Use regex to find liquid expressions and remove them before checking
             label = re.sub(r'{%\s*([^%]*)\s*%}', '', label)
 
-            # Split the remaining text into words
-            words_in_label = re.findall(r'\b\w+\b', label)
+            # Split the remaining text into words, retaining words with apostrophes
+            words_in_label = re.findall(r'\b(?:\w+(?:\'\w+)?)\b', label)
 
             # Check the remaining words using your custom logic
             return all(starts_with_capital_or_digit_or_special_char(word) for word in words_in_label)
