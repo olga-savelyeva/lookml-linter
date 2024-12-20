@@ -9,9 +9,6 @@ class LabelCustomCheck(Rule):
     def applies_to() -> Tuple[str, ...]:
         return 'explore', 'view', 'field', 'dimension', 'measure'
 
-    import re
-    from typing import Union, Any
-
     def run(self, lookml_object, runtime_params: Union[Any, None] = None) -> bool:
         # List of lowercase words or units that should be ignored for capitalization checks
         allowed_lowercase_words = {
