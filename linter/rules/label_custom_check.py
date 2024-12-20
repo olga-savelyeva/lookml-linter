@@ -47,5 +47,6 @@ class LabelCustomCheck(Rule):
 
         return True
 
+
     def message(self) -> str:
         return 'Every word in label should start with capital letter, digit or special character. Label can not be blank but can start with whitespaces and contain liquid-syntax.'
