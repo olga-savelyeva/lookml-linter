@@ -9,7 +9,7 @@ def test_lookml_object_with_label() -> None:
         'dimensions': {
             'user_name': {
                 'type': 'string',
-                'label': '(Non-VN) Used PayPal 2022 - Fees',
+                'label': '(Non-VN) Used PayPal 2022 - Fees [g]',
                 'description': 'Name of User',
                 'sql': '${TABLE}.USER_NAME'
             },
