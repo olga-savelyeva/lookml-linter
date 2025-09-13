@@ -3,12 +3,11 @@ from typing import Any, Tuple
 
 
 class ExploreRequiresLabel(Rule):
-    @staticmethod
     def applies_to() -> Tuple[str, ...]:
         return ('explore',)
 
     def run(self, explore: Any) -> bool:
-        if 'label' not in explore:
+        if not 'label' in explore:
             return False
         label = explore['label']
         valid_prefixes = ("PFY", "SNOW", "PFL", "FYUL")
