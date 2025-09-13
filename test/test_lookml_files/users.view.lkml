@@ -8,6 +8,7 @@ view: users {
   sql_table_name: `lookerplus.the_look.users`
     ;;
   drill_fields: [id]
+  label: "Label"
 
   dimension: id {
     primary_key: yes
@@ -71,6 +72,7 @@ view: users {
   }
 
   dimension: longitude {
+    label: "Longitude of's"
     type: number
     sql: ${TABLE}.longitude ;;
   }

@@ -6,7 +6,7 @@ def test_run_method_successfully_validates_explore_with_label() -> None:
     rule = ExploreRequiresLabel(Severity.ERROR.value)
 
     explore = {
-        'label': 'Aggregated User Data',
+        'label': 'FYUL Aggregated User Data',
         'joins': [
             {
                 'type': 'left_outer',
