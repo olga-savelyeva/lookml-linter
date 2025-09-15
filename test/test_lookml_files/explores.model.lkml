@@ -81,3 +81,7 @@ explore: order_items_benchmark {
 }
 
 explore: order_facts_pdt {}
+
+explore: order_facts_pdt {
+  label: "FYUL Label"
+}

@@ -9,4 +9,9 @@ class ExploreRequiresLabel(Rule):
     def run(self, explore: Any) -> bool:
         if not 'label' in explore:
             return False
-        return True
+        label = explore['label']
+        valid_prefixes = ("PFY", "SNOW", "PFL", "FYUL")
+        return any(label.startswith(prefix) for prefix in valid_prefixes)
+
+    def message(self) -> str:
+        return "Explore must have a label starting with PFY, PFL, SNOW or FYUL."

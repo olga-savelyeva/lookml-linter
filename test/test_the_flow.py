@@ -4,7 +4,7 @@ import pytest
 @pytest.fixture
 def set_envs_1(monkeypatch):
     monkeypatch.setenv('INPUT_CONFIGFILE', '../config.example.yaml')
-    monkeypatch.setenv('INPUT_FILEPATHS', '../test/test_lookml_files/users.view.lkml ../test/test_lookml_files/views/unparsable_view.lkml')
+    monkeypatch.setenv('INPUT_FILEPATHS', '../test/test_lookml_files/users.view.lkml ../test/test_lookml_files/views/unparsable_view.lkml ../test/test_lookml_files/explores.model.lkml')
     monkeypatch.setenv('INPUT_SAVEOUTPUTTOFILE', '0')
     monkeypatch.setenv('GITHUB_ENV', '')
     yield
