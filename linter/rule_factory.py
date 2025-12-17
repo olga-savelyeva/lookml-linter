@@ -32,6 +32,7 @@ from linter.rules.label_custom_check import LabelCustomCheck
 from linter.rules.label_is_camel_case import LabelIsCamelCase
 from linter.rules.count_distinct_measure_name import CountDistinctMeasureName
 from linter.rules.primary_key_prefix_and_is_hidden import PrimaryKeyPrefixAndIsHidden
+from linter.rules.id_dimension_must_be_string import IdDimensionMustBeString
 
 class RuleFactory:
     def __init__(self) -> None:
