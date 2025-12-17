@@ -71,3 +71,5 @@
       search_terms:
         - x
           y
+- rule: id_dimension_must_be_string
+  severity: error
