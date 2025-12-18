@@ -7,13 +7,12 @@ class IdDimensionMustBeString(Rule):
     def applies_to() -> Tuple[str, ...]:
         return 'dimension',
 
-    # Currently, only 'merchant_id' is flagged, but this list will be extended
     def run(self, lookml_object, runtime_params: Union[Any, None] = None) -> bool:
         name = lookml_object.get('name', '')
         sql = lookml_object.get('sql', '')
         field_type = lookml_object.get('type', 'string')
 
-        target_ids = ['merchant_id']
+        target_ids = self.params.get('search_terms', [])
 
         for target in target_ids:
             if target in name or target in sql:

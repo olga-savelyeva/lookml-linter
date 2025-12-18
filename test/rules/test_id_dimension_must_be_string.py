@@ -3,7 +3,8 @@ from linter.rules.id_dimension_must_be_string import IdDimensionMustBeString
 
 
 def test_run_method_successfully_validates_merchant_id_string() -> None:
-    rule = IdDimensionMustBeString(Severity.ERROR.value)
+    params = {'search_terms': ['merchant_id']}
+    rule = IdDimensionMustBeString(Severity.ERROR.value, params)
 
     field = {
         'name': 'merchant_id',
@@ -12,8 +13,10 @@ def test_run_method_successfully_validates_merchant_id_string() -> None:
     rule_result = rule.run(field)
     assert rule_result == True
 
+
 def test_run_method_fails_merchant_id_number() -> None:
-    rule = IdDimensionMustBeString(Severity.ERROR.value)
+    params = {'search_terms': ['merchant_id']}
+    rule = IdDimensionMustBeString(Severity.ERROR.value, params)
 
     field = {
         'name': 'merchant_id',
@@ -24,7 +27,8 @@ def test_run_method_fails_merchant_id_number() -> None:
 
 
 def test_run_method_fails_sql_reference_number() -> None:
-    rule = IdDimensionMustBeString(Severity.ERROR.value)
+    params = {'search_terms': ['merchant_id']}
+    rule = IdDimensionMustBeString(Severity.ERROR.value, params)
 
     field = {
         'name': 'merchant_pk',
@@ -34,8 +38,10 @@ def test_run_method_fails_sql_reference_number() -> None:
     rule_result = rule.run(field)
     assert rule_result == False
 
+
 def test_run_method_ignores_unrelated_field() -> None:
-    rule = IdDimensionMustBeString(Severity.ERROR.value)
+    params = {'search_terms': ['merchant_id']}
+    rule = IdDimensionMustBeString(Severity.ERROR.value, params)
 
     field = {
         'name': 'order_amount',
