@@ -50,3 +50,22 @@ def test_run_method_fails_when_primary_key_is_not_first_dimension() -> None:
 
     rule_result = rule.run(view)
     assert rule_result == False
+
+def test_run_method_successfully_validates_extended_view() -> None:
+    rule = PrimaryKeyIsFirstDimensionInView(Severity.ERROR.value)
+
+    view = {
+        'extends': 'source_view',
+        'dimensions': [
+            {
+                'name': 'id',
+                'sql': '${TABLE}.ID',
+                'type': 'string',
+            },
+        ],
+        'name': 'OrderItems',
+        'sql_table_name': 'SOURCE.ORDER_ITEMS',
+    }
+
+    rule_result = rule.run(view)
+    assert rule_result == True
