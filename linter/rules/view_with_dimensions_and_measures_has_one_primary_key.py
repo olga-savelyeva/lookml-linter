@@ -7,6 +7,10 @@ class ViewWithDimensionsAndMeasuresHasOnePrimaryKey(Rule):
         return ('view',)
 
     def run(self, view: Any) -> bool:
+        # If the view extends another view, skip the PK count check.
+        if 'extends__all' in view:
+            return True
+
         dimensions, measures = [
             view.get(key, []) for key in ['dimensions', 'measures']]
         has_primary_key = True
