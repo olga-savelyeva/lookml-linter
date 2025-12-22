@@ -50,3 +50,14 @@ def test_run_method_ignores_unrelated_field() -> None:
     }
     rule_result = rule.run(field)
     assert rule_result == True
+
+def test_run_method_successfully_validates_merchant_id_reference_in_yesno() -> None:
+    params = {'search_terms': ['merchant_id']}
+    rule = IdDimensionMustBeString(Severity.ERROR.value, params)
+    field = {
+        'name': 'is_printify_merchant',
+        'type': 'yesno',
+        'sql': '${TABLE}.merchant_id IS NOT NULL'
+    }
+    rule_result = rule.run(field)
+    assert rule_result == True
