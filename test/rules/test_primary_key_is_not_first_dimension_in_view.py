@@ -55,7 +55,7 @@ def test_run_method_successfully_validates_extended_view() -> None:
     rule = PrimaryKeyIsFirstDimensionInView(Severity.ERROR.value)
 
     view = {
-        'extends': 'source_view',
+        'extends__all': ['source_view'],
         'dimensions': [
             {
                 'name': 'id',
