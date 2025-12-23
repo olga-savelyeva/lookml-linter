@@ -16,6 +16,8 @@ class IdDimensionMustBeString(Rule):
 
         for target in target_ids:
             if target in name or target in sql:
+                if field_type == 'yesno':
+                    continue
                 if field_type != 'string':
                     return False
 
