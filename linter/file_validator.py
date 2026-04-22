@@ -15,7 +15,8 @@ class FileValidator:
                 valid = self.validate_comment_in_the_header(raw_file_lines)
                 if not valid:
                     result = False
-                    self.__errors.append(raw_file_path)
+                    reason = "missing" if len(raw_file_lines) < 7 else "incorrect format"
+                    self.__errors.append((raw_file_path, reason))
         return result
 
     @property
@@ -24,15 +25,17 @@ class FileValidator:
 
     def error_log(self):
         messages = []
-        for er in self.errors:
-            messages.append(f"- :x: File `{er}` either has no header at the top or the header is in an incorrect format.")
+        for path, reason in self.errors:
+            messages.append(f"- :x: File `{path}` has a {reason} header.")
         return '\n'.join(messages)
 
     @staticmethod
     def validate_comment_in_the_header(raw_file_lines) -> bool:
-        return len(raw_file_lines) >= 5 \
+        return len(raw_file_lines) >= 7 \
             and '###' in raw_file_lines[0] \
             and '# Squad/Team:' in raw_file_lines[1] \
             and '# Owned by:' in raw_file_lines[2] \
             and '# Created:' in raw_file_lines[3] \
-            and '# Purpose:' in raw_file_lines[4]
+            and '# Purpose:' in raw_file_lines[4] \
+            and '# Updated:' in raw_file_lines[5] \
+            and '# Archived:' in raw_file_lines[6]

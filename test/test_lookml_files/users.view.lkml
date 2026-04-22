@@ -3,6 +3,8 @@
 # Owned by: Me
 # Created: Me
 # Purpose: Me
+# Updated: Me
+# Archived: Me
 ##################################################################################
 view: users {
   sql_table_name: `lookerplus.the_look.users`
